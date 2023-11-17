@@ -1,5 +1,6 @@
 import { Avatar, Badge} from 'antd';
 import {ShoppingCartOutlined } from '@ant-design/icons';
+import React from 'react';
 
 const CartWidget = () => {
     return (
