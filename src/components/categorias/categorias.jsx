@@ -9,10 +9,9 @@ const Categorias = () => {
           </Dropdown.Toggle>
     
           <Dropdown.Menu>
-            <Dropdown.Item ><Link to={'/Productos/electronics'}>electronics</Link></Dropdown.Item>
-            <Dropdown.Item ><Link to={'/Productos/jewelery'}>jewelery</Link></Dropdown.Item>
-            <Dropdown.Item ><Link to={"/Productos/men's clothing"}>men's clothing</Link></Dropdown.Item>
-            <Dropdown.Item ><Link to={"/Productos/women's clothing"}>women's clothing</Link></Dropdown.Item>
+            <Dropdown.Item ><Link to={'/Productos/pantalones'}>Pantalones</Link></Dropdown.Item>
+            <Dropdown.Item ><Link to={'/Productos/calzado'}>Calzado</Link></Dropdown.Item>
+            <Dropdown.Item ><Link to={"/Productos/abrigos"}>Abrigos</Link></Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       );

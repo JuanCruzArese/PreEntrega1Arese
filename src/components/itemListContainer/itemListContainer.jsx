@@ -1,27 +1,30 @@
-import { useEffect, useState } from "react"
-import { AutoComplete, Spin } from 'antd'
 import React from 'react';
-import ProductosGrid from "../productsGrid/productsGrid";
-import { useParams } from "react-router-dom";
 import Categorias from "../categorias/categorias";
+import Item from '../item/item';
+import { useState, useEffect } from 'react';
+import { db } from "../../firebase/client";
+import { collection, getDocs } from 'firebase/firestore';
+import { useParams } from "react-router-dom" 
 
 
 const ItemListContainers = () => {
-    const [productos, setProductos] = useState([])
-    const [loading, setLoading] = useState(true);
-    const {categoria} = useParams ()
+   const [productos,setProductos] = useState([])
+   const { categoria } = useParams()
 
-    const url = categoria ? `https://fakestoreapi.com/products/category/${categoria}` : 'https://fakestoreapi.com/products'
-
-    useEffect(() => {
-        fetch(url)
-            .then(res=>res.json())
-            .then((json) => {
-                setProductos(json);
-                setLoading(false);
-              })
-            .catch(error => console.error(error))
-    }, [categoria])
+   useEffect (() => {
+    const productsRef = collection(db, "products")
+    getDocs(productsRef)
+    .then(snapshot => {
+        const productosData = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+        if (categoria) {
+            const productosFiltrados = productosData.filter(producto => producto.categoryId === categoria);
+            setProductos(productosFiltrados);
+        } else {
+            setProductos(productosData);
+        }
+    })
+    .catch(e => console.error(e))
+    },[categoria])
 
     let div1 = {
         display: 'flex',
@@ -46,6 +49,7 @@ const ItemListContainers = () => {
 
     let div4 = {
         display: 'flex',
+        flexWrap: 'wrap',
         justifyContent: 'center',
         width: '100%'
     };
@@ -62,11 +66,7 @@ const ItemListContainers = () => {
                     </div>
                 </div>
                 <div style={div4}>
-                    {loading ? (
-                        <Spin />
-                    ) : (
-                        <ProductosGrid productos={productos} />
-                    )}
+                {productos.map((producto, index) =>(<Item key={index}producto={producto}/>))}
                 </div>
             </div>
         </>

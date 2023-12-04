@@ -1,0 +1,41 @@
+.styleDiv1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.styleDiv2 {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.styleImg {
+    width: 600px;
+    height: 800px;
+}
+
+
+.styleDiv4 {
+    display: flex;
+    padding-left: 20px;
+    padding-top: 40px;
+}
+
+.styleDiv5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20px;
+    width: 600px;
+    height: 800px;
+    padding-top: 20px;
+}
+
+
+.styleDiv3 {
+    padding-left: 20px;
+    padding-top: 40px;
+}
